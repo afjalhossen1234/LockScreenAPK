@@ -6,9 +6,14 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Build APK
+      - name: Generate Gradle Wrapper
+        script: |
+          gradle wrapper
+      - name: Make gradlew executable
         script: |
           chmod +x gradlew
+      - name: Build APK
+        script: |
           ./gradlew assembleDebug
     artifacts:
       - app/build/outputs/apk/**/*.apk
